@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload with Progress Bar | CodingNepal</title>
+    <link rel="stylesheet" href="view/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+<div class="wrapper">
+    <header>File Upload here</header>
+    <form action="#">
+        <input class="file-input" type="file" name="file" hidden multiple>
+        <i class="fas fa-cloud-upload-alt"></i>
+        <p>Browse File to Upload</p>
+    </form>
+    <section class="progress-area"></section>
+    <section class="uploaded-area"></section>
+    <button type="submit" onclick="this.classList.toggle(`button--loading`)" class="button load">
+        <span class="button__text">Run Wc</span>
+    </button>
+</div>
+<form method="get" action="wc-servlet" class="run-wc">
+    <button type="submit" onclick="this.classList.toggle(`button--loading`)" class="button ">
+        <span class="button__text">Run Wc</span>
+    </button>
+</form>
+<script src="scripts/script.js"></script>
+</body>
+</html>
