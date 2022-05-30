@@ -9,16 +9,15 @@ loading.addEventListener("click", ()=> {
     xhr.open("GET", "file-upload-servlet");
 })
 
-// form click event
 form.addEventListener("click", () =>{
     fileInput.click();
 });
 
 fileInput.onchange = ({target})=>{
-    let file = target.files[0]; //getting file [0] this means if user has selected multiple files then get first one only
+    let file = target.files[0]; 
     if(file){
-        let fileName = file.name; //getting file name
-        if(fileName.length >= 12){ //if file name length is greater than 12 then split it and add ...
+        let fileName = file.name;
+        if(fileName.length >= 12){ 
             let splitName = fileName.split('.');
             fileName = splitName[0].substring(0, 13) + "... ." + splitName[1];
         }
@@ -26,13 +25,13 @@ fileInput.onchange = ({target})=>{
     }
 }
 
-// file upload function
+
 function uploadFile(name){
-    let xhr = new XMLHttpRequest(); //creating new xhr object (AJAX)
-    xhr.open("POST", "file-upload-servlet"); //sending post request to the specified URL
-    xhr.upload.addEventListener("progress", ({loaded, total}) =>{ //file uploading progress event
-        let fileLoaded = Math.floor((loaded / total) * 100);  //getting percentage of loaded file size
-        let fileTotal = Math.floor(total / 1000); //gettting total file size in KB from bytes
+    let xhr = new XMLHttpRequest(); 
+    xhr.open("POST", "file-upload-servlet"); 
+    xhr.upload.addEventListener("progress", ({loaded, total}) =>{ 
+        let fileLoaded = Math.floor((loaded / total) * 100);  
+        let fileTotal = Math.floor(total / 1000); 
         let fileSize;
         // if file size is less than 1024 then add only KB else convert this KB into MB
         (fileTotal < 1024) ? fileSize = fileTotal + " KB" : fileSize = (loaded / (1024*1024)).toFixed(2) + " MB";
@@ -48,7 +47,7 @@ function uploadFile(name){
                             </div>
                           </div>
                         </li>`;
-        // uploadedArea.innerHTML = ""; //uncomment this line if you don't want to show upload history
+     
         uploadedArea.classList.add("onprogress");
         progressArea.innerHTML = progressHTML;
         if(loaded == total){
@@ -64,10 +63,10 @@ function uploadFile(name){
                             <i class="fas fa-check"></i>
                           </li>`;
             uploadedArea.classList.remove("onprogress");
-            // uploadedArea.innerHTML = uploadedHTML; //uncomment this line if you don't want to show upload history
-            uploadedArea.insertAdjacentHTML("afterbegin", uploadedHTML); //remove this line if you don't want to show upload history
+           
+            uploadedArea.insertAdjacentHTML("afterbegin", uploadedHTML); 
         }
     });
-    let data = new FormData(form); //FormData is an object to easily send form data
+    let data = new FormData(form);
     xhr.send(data); //sending form data
 }
